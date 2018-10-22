@@ -18,7 +18,7 @@ class Solution:
         :rtype: void Do not return anything, modify nums in-place instead.
         """
         k = 0  # [0,k) 全是非0元素
-        # [k,i） 全为0
+        # [k,i] 全为0
         for i in range(0, len(nums)):
             if nums[i] != 0:
                 nums[k], nums[i] = nums[i], nums[k]
