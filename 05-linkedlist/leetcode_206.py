@@ -1,8 +1,5 @@
 # Definition for singly-linked list.
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+from utils import ListNode, createLinkedList, printLinkedList
 
 
 class Solution:
@@ -22,3 +19,16 @@ class Solution:
             cur = next
 
         return virnode.next
+
+
+def main():
+    arr = [1, 2, 3, 4, 5]
+    head = createLinkedList(arr)
+    printLinkedList(head)
+
+    head = Solution().reverseList(head)
+    printLinkedList(head)
+
+
+if __name__ == '__main__':
+    main()
