@@ -11,9 +11,13 @@ class Solution:
         record = set()
 
         while r < len(nums):
-            res = self.ceil(record, nums[r]-t)
-            if res != None and res <= nums[r] + t:
-                return True
+            if t == 0:
+                if nums[r] in record:
+                    return True
+            else:
+                res = self.ceil(record, nums[r]-t)
+                if res != None and res <= nums[r] + t:
+                    return True
 
             record.add(nums[r])
             r += 1
@@ -34,7 +38,6 @@ class Solution:
 
 
 '''
-时间超出限制
 时间复杂度：O(nlogk)
 空间复杂度为：O(k)
 '''
