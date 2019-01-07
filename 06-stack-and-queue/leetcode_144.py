@@ -42,10 +42,10 @@ class Solution:
         while len(stack) != 0:
             tmp = stack.pop()
             res.append(tmp.val)
-            if tmp.left:
-                stack.append(tmp.left)
             if tmp.right:
                 stack.append(tmp.right)
+            if tmp.left:
+                stack.append(tmp.left)
         return res
 
 
