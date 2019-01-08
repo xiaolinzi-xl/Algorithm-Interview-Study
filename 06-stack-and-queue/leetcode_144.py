@@ -6,6 +6,12 @@ class TreeNode:
         self.right = None
 
 
+class Command:
+    def __init__(self, s, node):
+        self.s = s
+        self.node = node
+
+
 class Solution:
     def __init__(self):
         self.res = []
@@ -48,9 +54,34 @@ class Solution:
                 stack.append(tmp.left)
         return res
 
+    #   模拟系统栈的执行
+    def preorderTraversal_2(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root:
+            return []
+        stack = []
+        res = []
+        stack.append(Command('go', root))
+        while len(stack) != 0:
+            command = stack.pop()
+            if command.s == 'go':
+                node = command.node
+                if node.right:
+                    stack.append(Command('go', node.right))
+                if node.left:
+                    stack.append(Command('go', node.left))
+                stack.append(Command('print', node))
+            else:
+                res.append(command.node.val)
+        return res
+
 
 if __name__ == "__main__":
     root = TreeNode(6)
     root.left = TreeNode(3)
     root.right = TreeNode(5)
     print(Solution().preorderTraversal_1(root))
+    print(Solution().preorderTraversal_2(root))
