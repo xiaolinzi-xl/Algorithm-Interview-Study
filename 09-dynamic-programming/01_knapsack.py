@@ -42,6 +42,24 @@ class Knapsack01:
         # self.print_array(memo)
         return memo[0][c]
 
+    # 优化空间复杂度 O(c)
+    def knapsack01_2(self, w, v, c):
+        n = len(w)
+        if n == 0:
+            return 0
+
+        memo = [0] * (c+1)
+
+        for i in range(w[-1], c+1):
+            memo[i] = v[-1]
+
+        for i in range(n-2, -1, -1):
+            for j in range(c, w[i]-1, -1):
+                memo[j] = max(memo[j], memo[j-w[i]]+v[i])
+
+        # print(memo)
+        return memo[c]
+
     def print_array(self, arr):
         for i in range(len(arr)):
             print(arr[i])
@@ -53,3 +71,4 @@ if __name__ == "__main__":
     c = 5
     print(Knapsack01().knapsack01(w, v, c))
     print(Knapsack01().knapsack01_1(w, v, c))
+    print(Knapsack01().knapsack01_2(w, v, c))
